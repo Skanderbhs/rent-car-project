@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxDrive - Location de Voitures Premium</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-car"></i>
+                <span>LuxDrive</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#vehicles">Nos Véhicules</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">À Propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Trouvez votre</span>
+                    <span class="title-highlight">BONHEUR</span>
+                </h1>
+                <p class="hero-subtitle">Découvrez notre flotte premium de véhicules pour tous vos besoins</p>
+            </div>
+            
+            <!-- Booking Form -->
+            <div class="booking-form">
+                <div class="form-tabs">
+                    <button class="tab-btn active" data-tab="location">Location</button>
+                    <button class="tab-btn" data-tab="transfer">Transfert</button>
+                </div>
+                
+                <div class="form-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Lieu de prise en charge</label>
+                            <select>
+                                <option>Paris - Charles de Gaulle</option>
+                                <option>Paris - Orly</option>
+                                <option>Lyon - Part-Dieu</option>
+                                <option>Marseille - Saint-Charles</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Date de prise en charge</label>
+                            <input type="date" id="pickup-date">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Heure</label>
+                            <select>
+                                <option>09:00</option>
+                                <option>10:00</option>
+                                <option>11:00</option>
+                                <option>12:00</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Lieu de restitution</label>
+                            <select>
+                                <option>Même lieu</option>
+                                <option>Paris - Charles de Gaulle</option>
+                                <option>Paris - Orly</option>
+                                <option>Lyon - Part-Dieu</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Date de restitution</label>
+                            <input type="date" id="return-date">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Heure</label>
+                            <select>
+                                <option>18:00</option>
+                                <option>19:00</option>
+                                <option>20:00</option>
+                                <option>21:00</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                        Rechercher des véhicules
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="floating-card card-1">
+                <i class="fas fa-shield-alt"></i>
+                <span>Assurance incluse</span>
+            </div>
+            <div class="floating-card card-2">
+                <i class="fas fa-headset"></i>
+                <span>Support 24/7</span>
+            </div>
+            <div class="floating-card card-3">
+                <i class="fas fa-car"></i>
+                <span>Flotte premium</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos Services</h2>
+                <p>Une gamme complète de services pour répondre à tous vos besoins de mobilité</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Service Client Exceptionnel</h3>
+                    <p>Notre équipe dédiée vous accompagne à chaque étape de votre location pour une expérience parfaite.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Flotte de Véhicules Premium</h3>
+                    <p>Découvrez notre sélection de véhicules haut de gamme, régulièrement renouvelée et parfaitement entretenue.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Livraison à Domicile</h3>
+                    <p>Nous livrons votre véhicule directement à l'adresse de votre choix pour votre plus grand confort.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Assistance Technique</h3>
+                    <p>Bénéficiez d'une assistance technique 24h/24 et 7j/7 pour voyager en toute sérénité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section id="vehicles" class="vehicles">
+        <div class="container">
+            <div class="section-header">
+                <h2>Notre Flotte</h2>
+                <p>Choisissez parmi notre sélection de véhicules premium</p>
+            </div>
+            
+            <div class="vehicle-categories">
+                <button class="category-btn active" data-category="all">Tous</button>
+                <button class="category-btn" data-category="economy">Économique</button>
+                <button class="category-btn" data-category="luxury">Luxe</button>
+                <button class="category-btn" data-category="suv">SUV</button>
+                <button class="category-btn" data-category="sport">Sport</button>
+            </div>
+            
+            <div class="vehicles-grid">
+                <div class="vehicle-card" data-category="economy">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Citroën C3">
+                        <div class="vehicle-badge">Populaire</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Citroën C3</h3>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-users"></i> 5 places</span>
+                            <span><i class="fas fa-suitcase"></i> 2 bagages</span>
+                            <span><i class="fas fa-cog"></i> Manuelle</span>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price">29€</span>
+                            <span class="period">/jour</span>
+                        </div>
+                        <button class="reserve-btn">Réserver</button>
+                    </div>
+                </div>
+                
+                <div class="vehicle-card" data-category="luxury">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="BMW Série 5">
+                        <div class="vehicle-badge premium">Premium</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>BMW Série 5</h3>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-users"></i> 5 places</span>
+                            <span><i class="fas fa-suitcase"></i> 3 bagages</span>
+                            <span><i class="fas fa-cog"></i> Automatique</span>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price">89€</span>
+                            <span class="period">/jour</span>
+                        </div>
+                        <button class="reserve-btn">Réserver</button>
+                    </div>
+                </div>
+                
+                <div class="vehicle-card" data-category="suv">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Peugeot 3008">
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Peugeot 3008</h3>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-users"></i> 5 places</span>
+                            <span><i class="fas fa-suitcase"></i> 4 bagages</span>
+                            <span><i class="fas fa-cog"></i> Automatique</span>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price">65€</span>
+                            <span class="period">/jour</span>
+                        </div>
+                        <button class="reserve-btn">Réserver</button>
+                    </div>
+                </div>
+                
+                <div class="vehicle-card" data-category="sport">
+                    <div class="vehicle-image">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Audi TT">
+                        <div class="vehicle-badge sport">Sport</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Audi TT</h3>
+                        <div class="vehicle-specs">
+                            <span><i class="fas fa-users"></i> 2 places</span>
+                            <span><i class="fas fa-suitcase"></i> 1 bagage</span>
+                            <span><i class="fas fa-cog"></i> Automatique</span>
+                        </div>
+                        <div class="vehicle-price">
+                            <span class="price">120€</span>
+                            <span class="period">/jour</span>
+                        </div>
+                        <button class="reserve-btn">Réserver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Pourquoi choisir LuxDrive ?</h2>
+                    <p>Depuis plus de 15 ans, LuxDrive s'engage à vous offrir une expérience de location de véhicules exceptionnelle. Notre passion pour l'excellence et notre attention aux détails font de nous le partenaire idéal pour tous vos déplacements.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15000+</div>
+                            <div class="stat-label">Clients satisfaits</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Véhicules disponibles</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Agences en France</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="/placeholder.svg?height=400&width=500" alt="Équipe LuxDrive">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contactez-nous</h2>
+                <p>Notre équipe est à votre disposition pour répondre à toutes vos questions</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <p>+33 1 23 45 67 89</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contact@luxdrive.fr</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adresse</h4>
+                            <p>123 Avenue des Champs-Élysées<br>75008 Paris, France</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-row">
+                        <input type="text" placeholder="Nom" required>
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <input type="text" placeholder="Sujet" required>
+                    <textarea placeholder="Message" rows="5" required></textarea>
+                    <button type="submit">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-car"></i>
+                        <span>LuxDrive</span>
+                    </div>
+                    <p>Votre partenaire de confiance pour tous vos besoins de mobilité premium.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Location courte durée</a></li>
+                        <li><a href="#">Location longue durée</a></li>
+                        <li><a href="#">Transfert aéroport</a></li>
+                        <li><a href="#">Chauffeur privé</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Informations</h4>
+                    <ul>
+                        <li><a href="#">Conditions générales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Assurance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
+                        <li><i class="fas fa-envelope"></i> contact@luxdrive.fr</li>
+                        <li><i class="fas fa-clock"></i> 24h/24 - 7j/7</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 LuxDrive. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
