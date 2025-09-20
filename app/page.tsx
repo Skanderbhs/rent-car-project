@@ -9,14 +9,44 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Calendar, MapPin, Clock, Car, Users, Shield, Phone, Mail, CheckCircle } from "lucide-react"
 import { Navbar } from "@/components/navbar"
+import { supabase } from "@/lib/supabaseClient"
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState({})
   const [isReservationOpen, setIsReservationOpen] = useState(false)
   const [selectedCar, setSelectedCar] = useState(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
+  const [cars, setCars] = useState<any[]>([])
 
   useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("cars")
+          .select("id, name, price_per_day, image, passengers, luggage")
+          .limit(15) // Get 15 cars to choose from
+
+        if (error) {
+          console.error("❌ Error fetching cars:", error)
+        } else if (data && data.length > 0) {
+          // Randomly select 3 cars from the 15
+          const selectedCars = []
+          const availableCars = [...data]
+
+          for (let i = 0; i < Math.min(3, data.length); i++) {
+            const randomIndex = Math.floor(Math.random() * availableCars.length)
+            selectedCars.push(availableCars.splice(randomIndex, 1)[0])
+          }
+
+          setCars(selectedCars)
+        }     // Limit to 3 cars directly in the query
+      } catch (err) {
+        console.error("❌ Unexpected error:", err)
+      }
+    }
+
+    fetchCars()
+
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -56,7 +86,7 @@ export default function HomePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/luxury-car-showroom.png')",
+            backgroundImage: "url('https://i.pinimg.com/1200x/af/15/09/af1509b6cc101aa52428466721e1853a.jpg')",
           }}
         ></div>
 
@@ -64,9 +94,8 @@ export default function HomePage() {
           <div
             id="hero-content"
             data-animate
-            className={`transform transition-all duration-1000 ${
-              isVisible["hero-content"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
+            className={`transform transition-all duration-1000 ${isVisible["hero-content"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              }`}
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Trouvez votre <span className="text-red-500">BONHEUR</span>
@@ -80,9 +109,8 @@ export default function HomePage() {
           <div
             id="booking-form"
             data-animate
-            className={`transform transition-all duration-1000 delay-300 ${
-              isVisible["booking-form"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
+            className={`transform transition-all duration-1000 delay-300 ${isVisible["booking-form"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              }`}
           >
             <Card className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm">
               <CardContent className="p-6">
@@ -91,21 +119,21 @@ export default function HomePage() {
                     <label className="text-sm font-medium text-gray-700">Lieu de prise en charge</label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input placeholder="Paris, France" className="pl-10" />
+                      <Input placeholder="Tunis, Tunisie" className="pl-10" />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Date de prise en charge</label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input type="date" className="pl-10" />
+                      <Input type="date" defaultValue={new Date().toISOString().split('T')[0]} className="pl-10" />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Date de restitution</label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input type="date" className="pl-10" />
+                      <Input type="date" defaultValue={new Date().toISOString().split('T')[0]} className="pl-10" />
                     </div>
                   </div>
                   <div className="flex items-end">
@@ -118,15 +146,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Floating Reserve Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          className="bg-red-600 hover:bg-red-700 shadow-lg rounded-full px-6 py-6"
+          onClick={() => {
+            setSelectedCar({ name: "Réservation rapide" })
+            setIsReservationOpen(true)
+          }}
+        >
+          Réserver
+        </Button>
+      </div>
+
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50">
+      <section id="services" className="py-20 bg-gray-50 h-screen">
         <div className="container mx-auto px-4">
           <div
             id="services-header"
             data-animate
-            className={`text-center mb-16 transform transition-all duration-1000 ${
-              isVisible["services-header"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
+            className={`text-center mb-16 transform transition-all duration-1000 ${isVisible["services-header"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              }`}
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Nos services</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -162,12 +202,11 @@ export default function HomePage() {
                 key={index}
                 id={`service-${index}`}
                 data-animate
-                className={`transform transition-all duration-1000 delay-${index * 100} ${
-                  isVisible[`service-${index}`] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                }`}
+                className={`transform transition-all duration-1000 delay-${index * 100} ${isVisible[`service-${index}`] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                  }`}
               >
                 <Card className="h-full hover:shadow-lg transition-shadow duration-300 group">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-6 flex flex-col items-center justify-center">
                     <div className="mb-4 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
                     <h3 className="text-xl font-semibold mb-3 text-gray-900">{service.title}</h3>
                     <p className="text-gray-600">{service.description}</p>
@@ -180,15 +219,9 @@ export default function HomePage() {
       </section>
 
       {/* Car Fleet Section */}
-      <section id="voitures" className="py-20 bg-white">
+      <section id="plans" className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div
-            id="fleet-header"
-            data-animate
-            className={`text-center mb-16 transform transition-all duration-1000 ${
-              isVisible["fleet-header"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
-          >
+          <div id="fleet-header" className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Nos bons plans</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Découvrez notre sélection de véhicules premium à des tarifs exceptionnels
@@ -196,54 +229,35 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Dacia Sandero Stepway",
-                price: "À partir de 25€/jour",
-                image: "/dacia-sandero-stepway.png",
-                features: ["5 places", "Climatisation", "GPS inclus"],
-              },
-              {
-                name: "MG 5",
-                price: "À partir de 35€/jour",
-                image: "/mg-5-sedan.png",
-                features: ["5 places", "Automatique", "Bluetooth"],
-              },
-              {
-                name: "Renault Clio",
-                price: "À partir de 30€/jour",
-                image: "/renault-clio-red.png",
-                features: ["5 places", "Économique", "Moderne"],
-              },
-            ].map((car, index) => (
-              <div
-                key={index}
-                id={`car-${index}`}
-                data-animate
-                className={`transform transition-all duration-1000 delay-${index * 200} ${
-                  isVisible[`car-${index}`] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                }`}
-              >
-                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                  <div className="relative overflow-hidden">
+            {cars.map((car: any, index: any) => (
+              <div key={car.id || index}>
+                <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 group pt-0">
+                  <div className="overflow-hidden">
                     <img
                       src={car.image || "/placeholder.svg"}
                       alt={car.name}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-65 object-cover group-hover:scale-105 transition-transform duration-300 rounded-t-xl"
                     />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold mb-2">{car.name}</h3>
-                    <p className="text-2xl font-bold text-red-600 mb-4">{car.price}</p>
+                    <p className="text-2xl font-bold text-red-600 mb-4">
+                      À partir de {car.price_per_day} TND/jour
+                    </p>
                     <div className="space-y-2 mb-4">
-                      {car.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
-                          {feature}
-                        </div>
-                      ))}
+                      <div className="flex items-center text-sm text-gray-600">
+                        <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                        {car.passengers} places
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                        {car.luggage} bagages
+                      </div>
                     </div>
-                    <Button className="w-full bg-red-600 hover:bg-red-700" onClick={() => handleReservation(car)}>
+                    <Button
+                      className="w-full bg-red-600 hover:bg-red-700"
+                      onClick={() => handleReservation(car)}
+                    >
                       Réserver maintenant
                     </Button>
                   </CardContent>
@@ -255,14 +269,13 @@ export default function HomePage() {
       </section>
 
       {/* Authentication Section */}
-      <section id="auth" className="py-20 bg-gray-50">
+      <section id="auth" className="py-20 h-screen bg-gray-50">
         <div className="container mx-auto px-4">
           <div
             id="auth-header"
             data-animate
-            className={`text-center mb-16 transform transition-all duration-1000 ${
-              isVisible["auth-header"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
+            className={`text-center mb-16 transform transition-all duration-1000 ${isVisible["auth-header"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              }`}
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Accédez à votre espace</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -274,9 +287,8 @@ export default function HomePage() {
             <div
               id="user-auth"
               data-animate
-              className={`transform transition-all duration-1000 delay-200 ${
-                isVisible["user-auth"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-              }`}
+              className={`transform transition-all duration-1000 delay-200 ${isVisible["user-auth"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                }`}
             >
               <Card className="hover:shadow-lg transition-shadow duration-300 group">
                 <CardHeader className="text-center">
@@ -304,9 +316,8 @@ export default function HomePage() {
             <div
               id="admin-auth"
               data-animate
-              className={`transform transition-all duration-1000 delay-400 ${
-                isVisible["admin-auth"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-              }`}
+              className={`transform transition-all duration-1000 delay-400 ${isVisible["admin-auth"] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                }`}
             >
               <Card className="hover:shadow-lg transition-shadow duration-300 group">
                 <CardHeader className="text-center">
@@ -394,7 +405,7 @@ export default function HomePage() {
               <div className="space-y-2 text-gray-400">
                 <div className="flex items-center">
                   <Phone className="h-4 w-4 mr-2" />
-                  <span>+33 01 23 45 67 89</span>
+                  <span> +216 20 582 807</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-4 w-4 mr-2" />
@@ -422,7 +433,7 @@ export default function HomePage() {
                 {/* Lieu de prise en charge */}
                 <div className="space-y-3">
                   <label className="text-sm font-medium text-gray-700 flex items-center">
-                    <MapPin className="h-4 w-4 mr-2 text-orange-500" />
+                    <MapPin className="h-4 w-4 mr-2 text-red-600" />
                     Lieu de prise en charge
                   </label>
                   <Select>
@@ -430,11 +441,12 @@ export default function HomePage() {
                       <SelectValue placeholder="Lieu de prise en charge" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="paris">Paris Centre</SelectItem>
-                      <SelectItem value="orly">Aéroport Orly</SelectItem>
-                      <SelectItem value="cdg">Aéroport CDG</SelectItem>
-                      <SelectItem value="lyon">Lyon</SelectItem>
-                      <SelectItem value="marseille">Marseille</SelectItem>
+                      <SelectItem value="Tunis">Tunis - Aéroport Tunis Carthage</SelectItem>
+                      <SelectItem value="Monastir">Monastir - Aéroport international de Monastir Habib-Bourguiba</SelectItem>
+                      <SelectItem value="Enfida">Enfida - Aéroport international d'Enfidha-Hammamet</SelectItem>
+                      <SelectItem value="Tozeur">Tozeur - Aéroport international de Tozeur-Nefta</SelectItem>
+                      <SelectItem value="Tabarka">Tabarka - Aéroport international de Tabarka-Aïn Draham</SelectItem>
+                      <SelectItem value="Gafsa">Gafsa - Aéroport international de Gafsa-Ksar</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -442,7 +454,7 @@ export default function HomePage() {
                 {/* Agence de retour */}
                 <div className="space-y-3">
                   <label className="text-sm font-medium text-gray-700 flex items-center">
-                    <MapPin className="h-4 w-4 mr-2 text-orange-500" />
+                    <MapPin className="h-4 w-4 mr-2 text-red-600" />
                     Agence de retour
                   </label>
                   <Select>
@@ -450,11 +462,12 @@ export default function HomePage() {
                       <SelectValue placeholder="Lieu de restitution" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="paris">Paris Centre</SelectItem>
-                      <SelectItem value="orly">Aéroport Orly</SelectItem>
-                      <SelectItem value="cdg">Aéroport CDG</SelectItem>
-                      <SelectItem value="lyon">Lyon</SelectItem>
-                      <SelectItem value="marseille">Marseille</SelectItem>
+                      <SelectItem value="Tunis">Tunis - Aéroport Tunis Carthage</SelectItem>
+                      <SelectItem value="Monastir">Monastir - Aéroport international de Monastir Habib-Bourguiba</SelectItem>
+                      <SelectItem value="Enfida">Enfida - Aéroport international d'Enfidha-Hammamet</SelectItem>
+                      <SelectItem value="Tozeur">Tozeur - Aéroport international de Tozeur-Nefta</SelectItem>
+                      <SelectItem value="Tabarka">Tabarka - Aéroport international de Tabarka-Aïn Draham</SelectItem>
+                      <SelectItem value="Gafsa">Gafsa - Aéroport international de Gafsa-Ksar</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -464,46 +477,24 @@ export default function HomePage() {
                 {/* Date et heure de prise en charge */}
                 <div className="space-y-3">
                   <label className="text-sm font-medium text-gray-700">Date et heure de prise en charge</label>
-                  <div className="flex gap-2">
-                    <div className="flex-1 bg-gray-100 rounded-lg p-3 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold">13</div>
-                        <div className="text-xs text-gray-600">Mar</div>
-                        <div className="text-xs text-gray-600">Août</div>
-                      </div>
-                    </div>
-                    <div className="flex-1 bg-gray-100 rounded-lg p-3 flex items-center justify-center">
-                      <div className="flex items-center text-lg font-medium">
-                        <Clock className="h-4 w-4 mr-2" />
-                        11:00
-                      </div>
-                    </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input type="date" className="bg-gray-100 border-0" />
+                    <Input type="time" className="bg-gray-100 border-0" />
                   </div>
                 </div>
 
                 {/* Date et heure de restitution */}
                 <div className="space-y-3">
                   <label className="text-sm font-medium text-gray-700">Date et heure de restitution</label>
-                  <div className="flex gap-2">
-                    <div className="flex-1 bg-gray-100 rounded-lg p-3 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold">16</div>
-                        <div className="text-xs text-gray-600">Sam</div>
-                        <div className="text-xs text-gray-600">Août</div>
-                      </div>
-                    </div>
-                    <div className="flex-1 bg-gray-100 rounded-lg p-3 flex items-center justify-center">
-                      <div className="flex items-center text-lg font-medium">
-                        <Clock className="h-4 w-4 mr-2" />
-                        11:00
-                      </div>
-                    </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input type="date" className="bg-gray-100 border-0" />
+                    <Input type="time" className="bg-gray-100 border-0" />
                   </div>
                 </div>
               </div>
 
               {/* Bouton de réservation */}
-              <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 text-lg font-semibold rounded-lg">
+              <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-4 text-lg font-semibold rounded-lg">
                 Demande de réservation
               </Button>
             </div>

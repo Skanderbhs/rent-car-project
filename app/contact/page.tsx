@@ -60,7 +60,7 @@ export default function ContactPage() {
           </div>
           <div className="flex items-center space-x-4">
             <Phone className="h-4 w-4 text-red-600" />
-            <span className="text-sm font-medium">+33 01 23 45 67 89</span>
+            <span className="text-sm font-medium">+216 20 582 807</span>
           </div>
         </div>
       </nav>
@@ -71,8 +71,7 @@ export default function ContactPage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-EiWD8VstfIEBSIz5IHuxLubumQEuGY.png')",
+            backgroundImage: "url('https://i.pinimg.com/1200x/af/15/09/af1509b6cc101aa52428466721e1853a.jpg')",
           }}
         ></div>
 
@@ -135,7 +134,7 @@ export default function ContactPage() {
                       <div className="flex">
                         <div className="flex items-center bg-gray-100 px-3 border border-r-0 border-gray-300 rounded-l-md">
                           <span className="text-red-600 font-medium text-sm">🇫🇷</span>
-                          <span className="ml-1 text-sm">+33</span>
+                          <span className="ml-1 text-sm">+216</span>
                         </div>
                         <Input
                           placeholder="Mobile"
@@ -242,7 +241,7 @@ export default function ContactPage() {
               <div className="space-y-2 text-gray-400">
                 <div className="flex items-center">
                   <Phone className="h-4 w-4 mr-2" />
-                  <span>+33 01 23 45 67 89</span>
+                  <span>+216 20 582 807</span>
                 </div>
                 <div className="flex items-center">
                   <span>contact@automotive-rent.fr</span>
@@ -287,11 +286,12 @@ export default function ContactPage() {
                       <SelectValue placeholder="Lieu de prise en charge" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="paris">Paris Centre</SelectItem>
-                      <SelectItem value="orly">Aéroport Orly</SelectItem>
-                      <SelectItem value="cdg">Aéroport CDG</SelectItem>
-                      <SelectItem value="lyon">Lyon</SelectItem>
-                      <SelectItem value="marseille">Marseille</SelectItem>
+                      <SelectItem value="Tunis"> Tunis Carthage</SelectItem>
+                      <SelectItem value="Monastir">Aéroport international de Monastir Habib-Bourguiba</SelectItem>
+                      <SelectItem value="Enfida">Aéroport international d'Enfidha-Hammamet</SelectItem>
+                      <SelectItem value="Tozeur">Aéroport international de Tozeur-Nefta</SelectItem>
+                      <SelectItem value="Tabarka">Aéroport international de Tabarka-Aïn Draham</SelectItem>
+                      <SelectItem value="Gafsa">	Aéroport international de Gafsa-Ksar</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -307,11 +307,12 @@ export default function ContactPage() {
                       <SelectValue placeholder="Lieu de restitution" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="paris">Paris Centre</SelectItem>
-                      <SelectItem value="orly">Aéroport Orly</SelectItem>
-                      <SelectItem value="cdg">Aéroport CDG</SelectItem>
-                      <SelectItem value="lyon">Lyon</SelectItem>
-                      <SelectItem value="marseille">Marseille</SelectItem>
+                      <SelectItem value="Tunis"> Tunis Carthage</SelectItem>
+                      <SelectItem value="Monastir">Aéroport international de Monastir Habib-Bourguiba</SelectItem>
+                      <SelectItem value="Enfida">Aéroport international d'Enfidha-Hammamet</SelectItem>
+                      <SelectItem value="Tozeur">Aéroport international de Tozeur-Nefta</SelectItem>
+                      <SelectItem value="Tabarka">Aéroport international de Tabarka-Aïn Draham</SelectItem>
+                      <SelectItem value="Gafsa">	Aéroport international de Gafsa-Ksar</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

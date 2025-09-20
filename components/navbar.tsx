@@ -37,7 +37,7 @@ export function Navbar() {
 
         <div className="flex items-center space-x-4">
           <Phone className="h-4 w-4 text-red-600" />
-          <span className="text-sm font-medium hidden sm:inline">+33 01 23 45 67 89</span>
+          <span className="text-sm font-medium hidden sm:inline">+216 20 582 807</span>
           
           {/* Authentication Section */}
           {!loading && (

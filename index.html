@@ -23,10 +23,46 @@
                 <li><a href="#about">À Propos</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="nav-actions">
+                <a href="tel:+21620582807" class="nav-phone">
+                    <i class="fas fa-phone"></i>
+                    <span>+216 20 582 807</span>
+                </a>
+                <a href="#vehicles" class="reserve-cta">Réserver</a>
+            </div>
             <div class="nav-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
+            </div>
+        </div>
+
+        <!-- Brands Marquee -->
+        <div class="brands">
+            <div class="brands-marquee">
+                <div class="marquee-track">
+                    <img src="/placeholder-logo.png" alt="BMW" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Mercedes" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Audi" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Volkswagen" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Renault" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Peugeot" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Citroën" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Dacia" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Opel" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Ford" class="brand-logo">
+                    <!-- duplicate for seamless loop -->
+                    <img src="/placeholder-logo.png" alt="BMW" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Mercedes" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Audi" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Volkswagen" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Renault" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Peugeot" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Citroën" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Dacia" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Opel" class="brand-logo">
+                    <img src="/placeholder-logo.png" alt="Ford" class="brand-logo">
+                </div>
             </div>
         </div>
     </nav>
@@ -57,24 +93,23 @@
                         <div class="form-group">
                             <label><i class="fas fa-map-marker-alt"></i> Lieu de prise en charge</label>
                             <select>
-                                <option>Paris - Charles de Gaulle</option>
-                                <option>Paris - Orly</option>
-                                <option>Lyon - Part-Dieu</option>
-                                <option>Marseille - Saint-Charles</option>
+                                <option>Tunis - Aéroport Tunis Carthage</option>
+                                <option>Monastir - Aéroport international de Monastir Habib-Bourguiba</option>
+                                <option>Tozeur - Aéroport international de Tozeur-Nefta</option>
+                                <option>Tabarka - Aéroport international de Tabarka-Aïn Draham</option>
+                                <option>Gafsa - Aéroport international de Gafsa-Ksar</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><i class="fas fa-calendar"></i> Date de prise en charge</label>
-                            <input type="date" id="pickup-date">
-                        </div>
-                        <div class="form-group">
-                            <label><i class="fas fa-clock"></i> Heure</label>
-                            <select>
-                                <option>09:00</option>
-                                <option>10:00</option>
-                                <option>11:00</option>
-                                <option>12:00</option>
-                            </select>
+                            <label><i class="fas fa-calendar"></i> Date et heure de prise en charge</label>
+                            <div class="input-control">
+                                <i class="fas fa-calendar"></i>
+                                <input type="date" id="pickup-date" placeholder="jj/mm/aaaa">
+                            </div>
+                            <div class="input-control" style="margin-top:8px;">
+                                <i class="fas fa-clock"></i>
+                                <input type="time" id="pickup-time" placeholder="--:--">
+                            </div>
                         </div>
                     </div>
                     
@@ -83,23 +118,23 @@
                             <label><i class="fas fa-map-marker-alt"></i> Lieu de restitution</label>
                             <select>
                                 <option>Même lieu</option>
-                                <option>Paris - Charles de Gaulle</option>
-                                <option>Paris - Orly</option>
-                                <option>Lyon - Part-Dieu</option>
+                                <option>Tunis - Aéroport Tunis Carthage</option>
+                                <option>Monastir - Aéroport international de Monastir Habib-Bourguiba</option>
+                                <option>Tozeur - Aéroport international de Tozeur-Nefta</option>
+                                <option>Tabarka - Aéroport international de Tabarka-Aïn Draham</option>
+                                <option>Gafsa - Aéroport international de Gafsa-Ksar</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label><i class="fas fa-calendar"></i> Date de restitution</label>
-                            <input type="date" id="return-date">
-                        </div>
-                        <div class="form-group">
-                            <label><i class="fas fa-clock"></i> Heure</label>
-                            <select>
-                                <option>18:00</option>
-                                <option>19:00</option>
-                                <option>20:00</option>
-                                <option>21:00</option>
-                            </select>
+                            <label><i class="fas fa-calendar"></i> Date et heure de restitution</label>
+                            <div class="input-control">
+                                <i class="fas fa-calendar"></i>
+                                <input type="date" id="return-date" placeholder="jj/mm/aaaa">
+                            </div>
+                            <div class="input-control" style="margin-top:8px;">
+                                <i class="fas fa-clock"></i>
+                                <input type="time" id="return-time" placeholder="--:--">
+                            </div>
                         </div>
                     </div>
                     
@@ -290,7 +325,7 @@
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">50+</div>
-                            <div class="stat-label">Agences en France</div>
+                            <div class="stat-label">Agences en Tunisie</div>
                         </div>
                     </div>
                 </div>
@@ -316,7 +351,7 @@
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Téléphone</h4>
-                            <p>+33 1 23 45 67 89</p>
+                            <p>+216 20 582 807</p>
                         </div>
                     </div>
                     
@@ -332,7 +367,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Adresse</h4>
-                            <p>123 Avenue des Champs-Élysées<br>75008 Paris, France</p>
+                            <p>11, Avenue Kheireddine Pacha, 1002 Tunis, Tunisie<br>1002 Tunis, Tunisie</p>
                         </div>
                     </div>
                 </div>
@@ -391,7 +426,7 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul>
-                        <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
+                        <li><i class="fas fa-phone"></i>+216 20 582 807</li>
                         <li><i class="fas fa-envelope"></i> contact@luxdrive.fr</li>
                         <li><i class="fas fa-clock"></i> 24h/24 - 7j/7</li>
                     </ul>

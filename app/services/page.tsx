@@ -110,7 +110,7 @@ export default function ServicesPage() {
           </div>
           <div className="flex items-center space-x-4">
             <Phone className="h-4 w-4 text-red-600" />
-            <span className="text-sm font-medium">+33 01 23 45 67 89</span>
+            <span className="text-sm font-medium">+216 20 582 807</span>
           </div>
         </div>
       </nav>
@@ -121,8 +121,10 @@ export default function ServicesPage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/luxury-car-showroom.png')",
+            backgroundImage: "url('https://i.pinimg.com/1200x/af/15/09/af1509b6cc101aa52428466721e1853a.jpg')",
           }}
+
+          
         ></div>
 
         <div className="relative z-10 text-center text-white">
@@ -286,7 +288,7 @@ export default function ServicesPage() {
               <div className="space-y-2 text-gray-400">
                 <div className="flex items-center">
                   <Phone className="h-4 w-4 mr-2" />
-                  <span>+33 01 23 45 67 89</span>
+                  <span>+216 20 582 807</span>
                 </div>
                 <div className="flex items-center">
                   <span>contact@automotive-rent.fr</span>

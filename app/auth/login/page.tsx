@@ -64,6 +64,11 @@ export default function LoginPage() {
     <AuthGuard requireAuth={false}>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
+          {/* Logo header */}
+          <div className="flex items-center justify-center mb-4">
+            <img src="/automotive-logo.png" alt="Automotive Logo" className="h-8 w-auto mr-2" />
+            <span className="text-xl font-bold text-gray-900">AUTOMOTIVE</span>
+          </div>
           {/* Back to home */}
           <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6">
             <ArrowLeft className="h-4 w-4 mr-2" />
